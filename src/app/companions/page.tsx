@@ -1,9 +1,6 @@
 import CompanionCard from "@/components/CompanionCard";
-import CompanionsList from "@/components/CompanionList";
-import Cta from "@/components/Cta";
-import { recentSessions } from "@/constants";
 
-const Page = async () => {
+const Compinations = () => {
   return (
     <main>
       <h1>Popular Companions</h1>
@@ -37,17 +34,8 @@ const Page = async () => {
           color="#E5D0FF"
         />
       </section>
-
-      <section className="home-section">
-        <CompanionsList
-          title="Recently completed sessions"
-          companions={recentSessions}
-          classNames="w-2/3 max-lg:w-full"
-        />
-        <Cta />
-      </section>
     </main>
   );
 };
 
-export default Page;
+export default Compinations;
