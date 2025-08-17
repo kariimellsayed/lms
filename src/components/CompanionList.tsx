@@ -6,7 +6,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { cn } from "@/lib/utils";
+import { getSubjectColor } from "@/lib/utils";
+import { Companion } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,8 +22,10 @@ const CompanionsList = ({
   companions,
   classNames,
 }: CompanionsListProps) => {
+  console.log(companions);
+
   return (
-    <article className={cn("companion-list", classNames)}>
+    <article className={`companion-list ${classNames}`}>
       <h2 className="font-bold text-3xl">{title}</h2>
 
       <Table>
@@ -37,7 +40,7 @@ const CompanionsList = ({
 
         {/* Body */}
         <TableBody>
-          {companions?.map(({ id, subject, name, topic, duration, color }) => (
+          {companions?.map(({ id, subject, name, topic, duration }) => (
             <TableRow key={id}>
               {/* First Cell */}
               <TableCell>
@@ -45,7 +48,7 @@ const CompanionsList = ({
                   <div className="flex items-center gap-2">
                     <div
                       className="size-[72px] flex items-center justify-center rounded-lg max-md:hidden"
-                      style={{ backgroundColor: color }}
+                      style={{ backgroundColor: getSubjectColor(subject) }}
                     >
                       <Image
                         src={`/icons/${subject}.svg`}
@@ -69,7 +72,7 @@ const CompanionsList = ({
                 </div>
                 <div
                   className="flex items-center justify-center mx-auto rounded-lg w-fit p-2 md:hidden"
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: getSubjectColor(subject) }}
                 >
                   <Image
                     src={`/icons/${subject}.svg`}

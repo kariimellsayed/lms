@@ -9,7 +9,7 @@ import { SignInButton, SignedOut, UserButton, SignedIn } from "@clerk/nextjs";
 // Navitems
 const Navitems = [
   { link: "/", label: "Home" },
-  { link: "/companion", label: "Learning Companions" },
+  { link: "/companions", label: "Learning Companions" },
   { link: "/my-journey", label: "My Journey" },
 ];
 

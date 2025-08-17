@@ -35,7 +35,7 @@ export interface CreateCompanion {
   duration: number;
 }
 
-interface GetAllCompanions {
+export interface GetAllCompanions {
   limit?: number;
   page?: number;
   subject?: string | string[];
@@ -65,12 +65,12 @@ interface Avatar {
   className?: string;
 }
 
-interface SavedMessage {
+export interface SavedMessage {
   role: "user" | "system" | "assistant";
   content: string;
 }
 
-interface CompanionComponentProps {
+export interface CompanionComponentProps {
   companionId: string;
   subject: string;
   topic: string;

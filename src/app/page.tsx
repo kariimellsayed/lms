@@ -1,49 +1,59 @@
 import CompanionCard from "@/components/CompanionCard";
 import CompanionsList from "@/components/CompanionList";
 import Cta from "@/components/Cta";
-import { recentSessions } from "@/constants";
+import {
+  getAllCompanion,
+  getRecentSession,
+} from "@/lib/actions/companionsActions";
+import { getSubjectColor } from "@/lib/utils";
 
 const Page = async () => {
+  // All Companions
+  const companions = await getAllCompanion({ limit: 3 });
+  // Recent Sessions
+  const recentSessions = await getRecentSession(10);
+
+  console.log(recentSessions);
+
   return (
     <main>
       <h1>Popular Companions</h1>
 
       <section className="home-section">
-        <CompanionCard
-          id="1"
-          name="Neura the Brainy Explorer"
-          subject="Science"
-          topic="Neural Network of the Brain"
-          duration={45}
-          bookmarked={"true"}
-          color="#E5D0FF"
-        />
-        <CompanionCard
-          id="1"
-          name="Neura the Brainy Explorer"
-          subject="Science"
-          topic="Neural Network of the Brain"
-          duration={45}
-          bookmarked={"true"}
-          color="#E5D0FF"
-        />
-        <CompanionCard
-          id="1"
-          name="Neura the Brainy Explorer"
-          subject="Science"
-          topic="Neural Network of the Brain"
-          duration={45}
-          bookmarked={"true"}
-          color="#E5D0FF"
-        />
+        {companions.length > 0 ? (
+          companions.map((companion) => (
+            <CompanionCard
+              key={companion.id}
+              {...companion}
+              color={getSubjectColor(companion.subject)}
+            />
+          ))
+        ) : (
+          <div className="text-center py-10 text-gray-500 bg-gray-100 rounded-lg">
+            <p className="text-lg font-semibold">No companions available</p>
+            <p className="text-sm">
+              Please check back later or create a new companion.
+            </p>
+          </div>
+        )}
       </section>
 
       <section className="home-section">
-        <CompanionsList
-          title="Recently completed sessions"
-          companions={recentSessions}
-          classNames="w-2/3 max-lg:w-full"
-        />
+        {recentSessions.length > 0 ? (
+          <CompanionsList
+            title="Recently completed sessions"
+            companions={recentSessions}
+            classNames="w-2/3 max-lg:w-full"
+          />
+        ) : (
+          <div className="text-center py-10 text-gray-500 bg-gray-100 rounded-lg">
+            <p className="text-lg font-semibold">No companions available</p>
+            <p className="text-sm">
+              Please check back later or create a new companion.
+            </p>
+          </div>
+        )}
+
         <Cta />
       </section>
     </main>
