@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import CompanionCard from "@/components/CompanionCard";
 import CompanionsList from "@/components/CompanionList";
 import Cta from "@/components/Cta";
@@ -12,8 +14,6 @@ const Page = async () => {
   const companions = await getAllCompanion({ limit: 3 });
   // Recent Sessions
   const recentSessions = await getRecentSession(10);
-
-  console.log(recentSessions);
 
   return (
     <main>
