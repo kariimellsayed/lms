@@ -9,7 +9,7 @@ import { SignInButton, SignedOut, UserButton, SignedIn } from "@clerk/nextjs";
 // Navitems
 const Navitems = [
   { link: "/", label: "Home" },
-  { link: "/companions", label: "Learning Companions" },
+  { link: "/companions", label: "Companions" },
   { link: "/my-journey", label: "My Journey" },
 ];
 
@@ -22,7 +22,9 @@ const NavItems = () => {
         <Link
           key={nav.label}
           href={nav.link}
-          className={cn(pathname === nav.link && "text-primary font-semibold")}
+          className={cn(
+            pathname === nav.link && "text-primary font-semibold max-sm:text-sm"
+          )}
         >
           {nav.label}
         </Link>
